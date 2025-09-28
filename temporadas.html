@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mandalorian - Temporadas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in">
+    <header id="main-header"></header>
+
+    <main class="container">
+        <div class="season-header">
+            <div class="season-header-left">
+                <h1>Temporadas</h1>
+                <div class="season-selector">
+                    <label for="season-select">Elige una temporada:</label>
+                    <select id="season-select">
+                        <option value="">--Selecciona--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="season-header-right">
+                <div id="season-banner-container"></div>
+            </div>
+        </div>
+        <div id="episode-list" class="episode-container"></div>
+    </main>
+
+    <footer id="main-footer"></footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/temporadas.js"></script>
+</body>
+</html>

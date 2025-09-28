@@ -1,0 +1,473 @@
+/* --- Variables y Estilos Globales --- */
+:root {
+    --primary-color: #1a1a1a; /* Negro espacial */
+    --secondary-color: #9E9E9E; /* Gris metal */
+    --accent-color: #E6A824; /* Oro mandaloriano */
+    --text-color: #E0E0E0;
+    --font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    color: var(--text-color);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex; /* <-- AÑADIDO */
+    flex-direction: column; /* <-- AÑADIDO */
+    
+    /* --- Fondo de Estrellas --- */
+    background-color: var(--primary-color);
+    /* REEMPLAZAR: Puedes cambiar esta URL por la de tu imagen preferida */
+    background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+    position: relative; /* Necesario para el overlay */
+}
+
+/* Overlay oscuro para mejorar legibilidad */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Ajusta la opacidad aquí */
+    z-index: -1; /* Coloca el overlay detrás del contenido */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    position: relative; /* Asegura que el contenido esté sobre el overlay */
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2 {
+    color: var(--accent-color);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Header --- */
+.main-header {
+    background-color: rgba(0, 0, 0, 0.8); /* Ligeramente transparente */
+    padding: 0.5rem 0; /* Reducido para el logo */
+    border-bottom: 2px solid var(--accent-color);
+    position: relative;
+    z-index: 10;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    flex-direction: row;
+}
+
+.logo img {
+    height: 50px; /* Altura del logo */
+    width: auto;
+}
+
+.main-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.main-nav li {
+    margin-left: 20px;
+}
+
+.main-nav a {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: rgba(0, 0, 0, 0.8); /* Ligeramente transparente */
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 2px solid var(--accent-color);
+    position: relative;
+    z-index: 10;
+}
+
+.main-footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* --- Página de Inicio (Intro) --- */
+.intro-content {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.intro-image {
+    flex: 1;
+    max-width: 400px;
+    border-radius: 10px;
+    border: 3px solid var(--secondary-color);
+}
+
+.intro-text {
+    flex: 2;
+}
+
+/* --- Página Temporadas --- */
+.season-selector {
+    margin-bottom: 2rem;
+}
+
+.season-selector label {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+#season-select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+}
+
+.episode-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.episode-card {
+    background-color: rgba(43, 43, 43, 0.8);
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.episode-card h3 {
+    color: var(--accent-color);
+    margin-top: 0;
+}
+
+/* --- Página Galería --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s ease, border 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+}
+
+/* --- Filtros de Galería --- */
+.gallery-filters {
+    text-align: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* <-- AÑADIDO para responsive */
+    justify-content: center; /* <-- AÑADIDO para responsive */
+    display: flex; /* <-- AÑADIDO para responsive */
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-family);
+    text-transform: uppercase;
+}
+
+.filter-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1200px;
+}
+
+.close, .prev, .next {
+    position: absolute;
+    top: 15px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close {
+    right: 35px;
+    top: 15px;
+}
+
+.prev, .next {
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.prev { left: 0; }
+.next { right: 0; }
+
+.close:hover, .close:focus, .prev:hover, .next:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --- Página Contacto --- */
+.contact-content {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.contact-form-container, .map-container {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #2b2b2b;
+    border: 1px solid var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 5px;
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: #000;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #ffc107;
+}
+
+#form-status {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.map-container iframe {
+    border-radius: 8px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .intro-content, .contact-content, .info-item {
+        flex-direction: column;
+    }
+
+    .main-header .container {
+        flex-direction: column;
+    }
+
+    .main-nav ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-nav li {
+        margin: 10px 0;
+    }
+}
+
+/* --- Animaciones --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* --- Info Grid (Página de Inicio) --- */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.info-card {
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+}
+
+.info-card h3 {
+    color: var(--accent-color);
+    margin-top: 0;
+}
+
+/* --- Info Section (Página de Inicio) --- */
+.info-section {
+    margin-top: 3rem;
+}
+
+.info-section h2 {
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-image {
+    flex: 1;
+    max-width: 400px;
+    border-radius: 10px;
+    border: 3px solid var(--secondary-color);
+}
+
+.info-text {
+    flex: 2;
+}
+
+/* --- Season Banner --- */
+#season-banner-container {
+    /* The container for the banner image */
+}
+
+/* --- Season Header Layout --- */
+.season-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.season-header-left {
+    flex: 1;
+    text-align: center;
+}
+
+.season-header-right {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.season-banner {
+    max-height: 250px;
+    max-width: 100%;
+    width: auto;
+    display: inline-block;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 3px solid var(--secondary-color);
+}
