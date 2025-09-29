@@ -351,6 +351,8 @@ img {
 @media (max-width: 768px) {
     .intro-content, .contact-content, .info-item {
         flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
     }
 
     .main-header .container {
@@ -365,6 +367,40 @@ img {
 
     .main-nav li {
         margin: 10px 0;
+    }
+
+    /* Ajuste para la cabecera de temporadas */
+    .season-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .season-header-left, .season-header-right {
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Ajuste para el formulario de contacto y mapa */
+    .contact-content {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .contact-form-container, .map-container {
+        width: 100%;
+        max-width: 100%;
+    }
+    .map-container iframe {
+        width: 100% !important;
+        height: 250px !important;
+    }
+    .episode-container {
+        grid-template-columns: 1fr;
     }
 }
 
